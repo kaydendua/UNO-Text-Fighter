@@ -127,9 +127,15 @@ class player:
                     print("{}: {} {}".format(count, colour, damage))
                 print()
 
-                action = int(input("Input the number of the card you want to play: "))-1
-                while action >= count or action < 0:
-                    action = int(input("Invalid action. Please input a number from 1 to {}: ".format(count)))-1
+                action = input("Input the number of the card you want to play: ")
+                while True:
+                    if action.isdigit() == False or action == '':
+                        action = input("Invalid action. Please input a number from 1 to {}: ".format(count))
+                    elif int(action)-1 >= count or int(action)-1 < 0:
+                        action = input("Invalid action. Please input a number from 1 to {}: ".format(count))
+                    else:
+                        break
+                action = int(action)-1
                 
                 card.playcard(self, use_array, action)
                 
